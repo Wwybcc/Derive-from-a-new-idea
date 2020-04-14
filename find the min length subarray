@@ -1,0 +1,45 @@
+#include<stdio.h>
+#define N 6
+int FindSubarray(int s,int num[N]);
+int main(void)
+{
+    int s,num[N];
+    int i;
+    
+    scanf("%d",&s);
+    for(i=0;i<N;i++)
+    {
+        scanf("%d",&num[i]);
+    }
+    int ret=FindSubarray(s, num);
+    if(ret==7)
+        printf("Not exist!");
+    else
+        printf("%d",ret);
+}
+int FindSubarray(int s,int num[N])
+{
+    int len1=7,len;
+    int i,j;
+    int sum=0;
+    
+    for(i=0;i<N;i++)
+    {
+        sum=0;
+        for(j=i;j<N;j++)
+        {
+            sum+=num[j];
+            if(sum>=s)
+            {
+                len=j-i+1;
+                if(len<len1)
+                {
+                    len1=len;
+                }
+                break;
+            }
+        }
+    }
+    
+    return len1;
+}
